@@ -3,11 +3,21 @@ const cors = require('cors');
 const axios = require('axios');
 require('dotenv').config();
 
+// Import routes
+const authRoutes = require('./routes/auth');
+const watchlistRoutes = require('./routes/watchlist');
+
 const app = express();
 const PORT = process.env.PORT || 5000;
 
 app.use(cors());
 app.use(express.json());
+
+// Auth routes
+app.use('/api/auth', authRoutes);
+
+// Watchlist routes
+app.use('/api/watchlist', watchlistRoutes);
 
 const TMDB_BASE_URL = 'https://api.themoviedb.org/3';
 const TMDB_API_KEY = process.env.TMDB_API_KEY;
@@ -44,11 +54,12 @@ app.get('/api/movies/upcoming', async (req, res) => {
 
 app.get('/api/movies/now-playing', async (req, res) => {
   try {
+    const page = req.query.page || 1;
     const response = await axios.get(`${TMDB_BASE_URL}/movie/now_playing`, {
       params: {
         api_key: TMDB_API_KEY,
         language: 'en-US',
-        page: 1
+        page: page
       }
     });
     res.json(response.data);

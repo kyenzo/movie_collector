@@ -1,12 +1,17 @@
 .header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
   background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
   color: white;
   padding: 1rem 0;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
 }
 
 .header-container {
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
   padding: 0 2rem;
   display: flex;
@@ -21,13 +26,14 @@
 
 .logo h1 {
   margin: 0;
-  font-size: 1.8rem;
+  font-size: 2.5rem;
   font-weight: bold;
 }
 
 .nav {
   display: flex;
   gap: 2rem;
+  align-items: center;
 }
 
 .nav-link {
@@ -41,11 +47,133 @@
   color: #ffd700;
 }
 
+/* User Menu Styles */
+.user-menu {
+  position: relative;
+}
+
+.user-button {
+  background: none;
+  border: none;
+  color: white;
+  font-weight: 500;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.user-button:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffd700;
+}
+
+.dropdown-arrow {
+  font-size: 0.8rem;
+  transition: transform 0.3s ease;
+}
+
+.dropdown-arrow.open {
+  transform: rotate(180deg);
+}
+
+.user-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  min-width: 200px;
+  padding: 0.5rem 0;
+  margin-top: 0.5rem;
+  border: 1px solid #e0e0e0;
+}
+
+.user-dropdown::before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  right: 1rem;
+  width: 12px;
+  height: 12px;
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-bottom: none;
+  border-right: none;
+  transform: rotate(45deg);
+}
+
+.user-info {
+  padding: 0.75rem 1rem;
+}
+
+.user-info .username {
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 0.25rem;
+}
+
+.user-info .email {
+  font-size: 0.875rem;
+  color: #666;
+}
+
+.dropdown-divider {
+  margin: 0.5rem 0;
+  border: none;
+  border-top: 1px solid #e0e0e0;
+}
+
+.dropdown-item {
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 0.75rem 1rem;
+  text-align: left;
+  color: #333;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  font-size: 0.95rem;
+}
+
+.dropdown-item:hover {
+  background: #f8f9fa;
+}
+
+.logout-button:hover {
+  background: #fee;
+  color: #dc3545;
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .logo h1 {
+    font-size: 2.2rem;
+  }
+}
+
+/* Mobile */
 @media (max-width: 768px) {
   .header-container {
     padding: 0 1rem;
   }
   
+  .logo h1 {
+    font-size: 1.8rem;
+  }
+  
+  .nav {
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
   .logo h1 {
     font-size: 1.5rem;
   }

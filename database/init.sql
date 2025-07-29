@@ -25,12 +25,28 @@ CREATE TABLE movie_lists (
     UNIQUE(user_id, movie_id)
 );
 
+-- Create watchlist table for user's watchlist with custom ordering
+CREATE TABLE watchlist (
+    id SERIAL PRIMARY KEY,
+    user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    movie_id INTEGER NOT NULL, -- TMDB movie ID
+    movie_title VARCHAR(255) NOT NULL,
+    movie_poster_path VARCHAR(255),
+    movie_release_date DATE,
+    movie_vote_average DECIMAL(3,1),
+    added_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    sort_order INTEGER NOT NULL DEFAULT 0,
+    UNIQUE(user_id, movie_id)
+);
+
 -- Create indexes for better performance
 CREATE INDEX idx_users_email ON users(email);
 CREATE INDEX idx_users_username ON users(username);
 CREATE INDEX idx_movie_lists_user_id ON movie_lists(user_id);
 CREATE INDEX idx_movie_lists_movie_id ON movie_lists(movie_id);
 CREATE INDEX idx_movie_lists_watched ON movie_lists(watched);
+CREATE INDEX idx_watchlist_user_id ON watchlist(user_id);
+CREATE INDEX idx_watchlist_sort_order ON watchlist(user_id, sort_order);
 
 -- Create a function to update the updated_at timestamp
 CREATE OR REPLACE FUNCTION update_updated_at_column()
