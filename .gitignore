@@ -1,0 +1,42 @@
+# Claude Code files
+.claude/
+CLAUDE.md
+
+# Dependencies
+node_modules/
+node_modules/** */
+package-lock.json
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Build outputs
+build/
+dist/
+client/build/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Editor files
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+
+# Docker and Database files
+docker-compose.override.yml
+postgres-data/
+pgdata/
+*.sql.backup
+*.dump
+database/backups/
