@@ -94,7 +94,11 @@ const MovieList: React.FC = () => {
       });
 
       if (response.ok) {
-        setWatchlistMovies(prev => new Set([...prev, movie.id]));
+        setWatchlistMovies(prev => {
+          const newSet = new Set(prev);
+          newSet.add(movie.id);
+          return newSet;
+        });
       }
     } catch (error) {
       console.error('Error adding to watchlist:', error);
@@ -118,7 +122,7 @@ const MovieList: React.FC = () => {
 
       if (response.ok) {
         setWatchlistMovies(prev => {
-          const newSet = new Set([...prev]);
+          const newSet = new Set(prev);
           newSet.delete(movieId);
           return newSet;
         });
