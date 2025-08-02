@@ -40,3 +40,5 @@ pgdata/
 *.sql.backup
 *.dump
 database/backups/
+**/.terraform.lock.hcl
+**/.terraform**
