@@ -1,0 +1,31 @@
+# GCP Project Configuration
+project_id = "your-gcp-project-id"
+region     = "us-central1"
+zone       = "us-central1-a"
+
+# VM Configuration
+machine_type = "e2-standard-2"  # 2 vCPUs, 8GB RAM - good for production
+disk_size_gb = 50               # 50GB SSD storage
+disk_type    = "pd-balanced"    # Balanced performance and cost
+
+# Network Configuration
+create_static_ip = true
+
+# Security Configuration
+ssh_source_ranges = ["203.0.113.0/24"]  # REPLACE with your IP range/CIDR
+ssh_user         = "admin"               # Your SSH username
+ssh_public_key   = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC... admin@example.com"  # Your SSH public key
+
+# Application Configuration
+allow_http     = true
+allow_https    = true
+allow_app_port = true
+app_port       = "5000"
+app_source_ranges = ["0.0.0.0/0"]  # Consider restricting this in production
+
+# Database Configuration
+allow_postgres_external = false  # Keep false for security
+postgres_source_ranges  = []     # Empty for security
+
+# Application Settings
+node_version = "18"
